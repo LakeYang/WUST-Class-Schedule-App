@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">课程表</string>
-    <string name="pref_app_version">Ver 0.11</string>
+    <string name="pref_app_version">Ver 0.111</string>
     <string name="title_tools">工具与插件</string>
     <string name="title_timetable">课程表</string>
     <string name="title_settings">设置</string>
@@ -79,7 +79,7 @@
     <string name="pref_about">关于</string>
     <string name="pref_appname_about">武科大专用课程表</string>
     <string name="pref_app_on_github">在Github上查看</string>
-    <string name="pref_github_link">https://github.com/LakeYang/</string>
+    <string name="pref_github_link">https://github.com/LakeYang/WUST-Class-Schedule-App/</string>
     <string name="about_app_long_text">武科大专用课程表\n\nCopyright© 2018 by LakeYang <a href="mailto:hmnotehuyang@gmail.com">hmnotehuyang@gmail.com</a>\n\nThis program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License along with this program.  If not, see <a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>.</string>
     <string name="action_save_account">保存账号设置</string>
     <string name="prompt_username">用户名/学号</string>
