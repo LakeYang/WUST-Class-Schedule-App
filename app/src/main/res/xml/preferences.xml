@@ -28,7 +28,7 @@
         android:key="pref_key_update_settings">
         <Preference android:title="@string/pref_update_now" >
             <intent android:action="android.intent.action.VIEW"
-                android:data="http://www.example.com" />
+                android:data="https://github.com/LakeYang/WUST-Class-Schedule-App/releases" />
         </Preference>
         <Preference android:title="@string/pref_appname_about"
             android:summary="@string/pref_app_version">
