@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_tools"
+        android:icon="@drawable/ic_puzzle"
+        android:title="@string/title_tools" />
+
+    <item
+        android:id="@+id/navigation_timetable"
+        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:title="@string/title_timetable" />
+
+    <item
+        android:id="@+id/navigation_settings"
+        android:icon="@drawable/ic_cog"
+        android:title="@string/title_settings" />
+
+</menu>

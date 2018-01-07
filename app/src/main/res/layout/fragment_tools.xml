@@ -1,0 +1,128 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.hihuyang.kb.timetable.ToolsFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:paddingTop="10dp"
+                android:text="@string/course_manage" />
+
+            <Button
+                android:id="@+id/import_shedule_button"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_library_plus"
+                android:drawableStart="@drawable/ic_library_plus"
+                android:gravity="start|center_vertical"
+                android:paddingBottom="20dp"
+                android:paddingTop="20dp"
+                android:text="@string/add_course_from_net"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/button1"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_plus_box"
+                android:drawableStart="@drawable/ic_plus_box"
+                android:gravity="start|center_vertical"
+                android:paddingBottom="20dp"
+                android:paddingTop="20dp"
+                android:text="@string/add_course_manually"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/button2"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_sync"
+                android:drawableStart="@drawable/ic_sync"
+                android:gravity="start|center_vertical"
+                android:paddingBottom="20dp"
+                android:paddingTop="20dp"
+                android:text="@string/sync_course_from_net"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/delete_all"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_trash"
+                android:drawableStart="@drawable/ic_trash"
+                android:gravity="start|center_vertical"
+                android:paddingBottom="20dp"
+                android:paddingTop="20dp"
+                android:text="@string/delete_all_classes"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:paddingTop="10dp"
+                android:text="@string/account_manage" />
+
+            <Button
+                android:id="@+id/accout_setting"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_key_variant"
+                android:drawableStart="@drawable/ic_key_variant"
+                android:gravity="start|center_vertical"
+                android:paddingBottom="20dp"
+                android:paddingTop="20dp"
+                android:text="@string/account_settings"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:paddingTop="10dp"
+                android:text="@string/hidden_functions" />
+            <Button
+                android:id="@+id/button5"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_eye"
+                android:drawableStart="@drawable/ic_eye"
+                android:gravity="start|center_vertical"
+                android:paddingBottom="20dp"
+                android:paddingTop="20dp"
+                android:text="@string/see_others_timetable"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+    </ScrollView>
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/myCoordinatorLayout"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+    </android.support.design.widget.CoordinatorLayout>
+
+</RelativeLayout>

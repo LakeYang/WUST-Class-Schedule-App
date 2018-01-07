@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+        <PreferenceCategory
+            android:title="@string/pref_general"
+            android:key="pref_key_general_settings">
+           <SwitchPreference
+                android:defaultValue="false"
+                android:key="pref_hide_weekends"
+                android:title="@string/pref_hide_weekends"
+                android:summary="@string/pref_hide_weekends_summary"/>
+        </PreferenceCategory>
+    <PreferenceCategory
+        android:title="@string/pref_appearence"
+        android:key="pref_key_appearence_settings">
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="pref_show_grid"
+            android:title="@string/pref_show_grid"
+            android:summary="@string/pref_show_grid_summary"/>
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="pref_solid_grid"
+            android:title="@string/pref_solid_grid"
+            android:summary="@string/pref_solid_grid_summary"/>
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="@string/pref_about"
+        android:key="pref_key_update_settings">
+        <Preference android:title="@string/pref_update_now" >
+            <intent android:action="android.intent.action.VIEW"
+                android:data="http://www.example.com" />
+        </Preference>
+        <Preference android:title="@string/pref_appname_about"
+            android:summary="@string/pref_app_version">
+            <intent android:action="com.hihuyang.kb.timetable.activities.AboutAppActivity"/>
+        </Preference>
+        <Preference android:title="@string/pref_app_on_github"
+            android:summary="@string/pref_github_link">
+            <intent android:action="android.intent.action.VIEW"
+                android:data="@string/pref_github_link" />
+        </Preference>
+    </PreferenceCategory>
+</PreferenceScreen>
