@@ -39,6 +39,9 @@
         <activity
             android:name=".SetAccountActivity"
             android:label="@string/account_settings" />
+        <activity
+            android:name=".AddCustomClassActivity"
+            android:label="@string/AddNewClass"></activity>
     </application>
 
 </manifest>

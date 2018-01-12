@@ -31,7 +31,7 @@ public class ClassInfoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_class_info);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         TextView class_teacher = findViewById(R.id.class_teacher);
         TextView class_name = findViewById(R.id.class_name);
         TextView class_weeks = findViewById(R.id.class_weeks);

@@ -53,6 +53,7 @@ public class ToolsFragment extends Fragment {
         Button importSheduleBtn = getView().findViewById(R.id.import_shedule_button);
         Button deleteAllBtn = getView().findViewById(R.id.delete_all);
         Button accountSetting = getView().findViewById(R.id.accout_setting);
+        Button addClassManual = getView().findViewById(R.id.add_class_manual);
         final CoordinatorLayout mCoord = getView().findViewById(R.id.myCoordinatorLayout);
         importSheduleBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,6 +75,13 @@ public class ToolsFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), SetAccountActivity.class);
+                startActivity(intent);
+            }
+        });
+        addClassManual.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), AddCustomClassActivity.class);
                 startActivity(intent);
             }
         });

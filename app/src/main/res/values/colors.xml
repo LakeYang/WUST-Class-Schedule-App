@@ -6,4 +6,6 @@
     <color name="colorClassTime">#AAAAAA</color>
     <color name="colorWeekdayNormal">#CCCCCC</color>
     <color name="colorWeekdayActive">#99CCFF</color>
+    <color name="colorSelectActive">#99CCFF</color>
+    <color name="colorSelectNormal">#CCCCCC</color>
 </resources>

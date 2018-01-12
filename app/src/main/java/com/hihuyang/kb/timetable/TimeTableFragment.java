@@ -183,6 +183,9 @@ public class TimeTableFragment extends Fragment {
                 float h = gridLayout.getHeight()/11;
                 int weekid = (int)((x-w)/2/w+1);
                 int clockid = (int)(y/h+1);
+                if(weekid == 0){
+                    return;
+                }
                 if(ifAnyAddButtonShown){
                     gridLayout.removeViewAt(gridLayout.getChildCount()-1);
                     ifAnyAddButtonShown = false;
@@ -197,7 +200,7 @@ public class TimeTableFragment extends Fragment {
                     param.setGravity(Gravity.FILL);
                     addBtn.setLayoutParams(param);
                     gridLayout.addView(addBtn);
-                    addBtn.init(weekid,clockid);
+                    addBtn.init(weekid,clockid,currentWeek);
                 }
             }
         });

@@ -40,6 +40,10 @@ public class ClassButton extends android.support.v7.widget.AppCompatButton {
                 ctx.startActivity(intent);
             }
         });
-        setText(cc.name + "@" + cc.place);
+        if(cc.place.matches("")){
+            setText(cc.name);
+        }else{
+            setText(cc.name + "@" + cc.place);
+        }
     }
 }

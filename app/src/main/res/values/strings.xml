@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">课程表</string>
-    <string name="pref_app_version">Ver 0.111</string>
+    <string name="pref_app_version">Ver 0.190</string>
     <string name="title_tools">工具与插件</string>
     <string name="title_timetable">课程表</string>
     <string name="title_settings">设置</string>
@@ -21,6 +21,15 @@
     <string name="friday"><b>周五</b></string>
     <string name="saturday"><b>周六</b></string>
     <string name="sunday"><b>周日</b></string>
+    <string-array name="weekday_selection_array">
+        <item>周一</item>
+        <item>周二</item>
+        <item>周三</item>
+        <item>周四</item>
+        <item>周五</item>
+        <item>周六</item>
+        <item>周日</item>
+    </string-array>
     <string name="week_selection_btn">第%1$d周</string>
     <string name="class_in_week">共有%1$d节课</string>
     <string name="week_selection_title">选择周数</string>
@@ -85,4 +94,23 @@
     <string name="prompt_username">用户名/学号</string>
     <string name="prompt_password">密码</string>
     <string name="account_setting_hint">在这里填写的账号密码将会在本应用任何需要教务系统账号密码的位置自动填入</string>
+    <string name="AddNewClass">添加新课程</string>
+    <string name="course_name">课程名称</string>
+    <string name="teacher_name">任课教师</string>
+    <string name="clock_suffix">节</string>
+    <string name="begin">开始</string>
+    <string name="end">结束</string>
+    <string name="clock_mid_line">-</string>
+    <string name="weeks_of_class">上课周数</string>
+    <string name="place_to_have_class">上课地点</string>
+    <string name="save">保存</string>
+    <string name="please_input_coursename">请输入课程名称</string>
+    <string name="unset">未设置</string>
+    <string name="startclock_greater_than_end">开始节数大于结束节数</string>
+    <string name="startclock_cannot_zero">节数不能为0，从1开始</string>
+    <string name="endclock_exceed">结束节数不能大于11</string>
+    <string name="please_input_clock">请输入节数</string>
+    <string name="at_least_one_week_selected">至少有一周要上课</string>
+    <string name="class_too_long">上课时间太长</string>
+    <string name="add_class_manual_success">添加课程成功！</string>
 </resources>
