@@ -14,7 +14,6 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -334,7 +333,7 @@ public class TimeTableFragment extends Fragment {
             }
         }
         //Loading Interface
-        int classNum = courseManager.getNumOfClassesInWeek(currentWeek);
+        int classNum = courseManager.getNumOfAllClasses();
         gridLayout.removeViews(19, gridLayout.getChildCount()-19);
         if (classNum != 0) {
             ClassButton[] buttonCollection = new ClassButton[classNum];
@@ -364,6 +363,38 @@ public class TimeTableFragment extends Fragment {
                         buttonCollection[buttonPoint].setTextColor(0xffffffff);
                         gridLayout.addView(buttonCollection[buttonPoint]);
                         buttonPoint++;
+                        ic += classDuration - 1;
+                    }else{
+                        sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
+                        boolean show_all_classes = sharedPref.getBoolean("pref_show_class_in_other_weeks", true);
+                        //Show classes in grey
+                        if(show_all_classes){
+                            if(courseManager.getCourseByTimeInAllWeeks(iw,ic) != null){
+                                CourseClass cc = courseManager.getCourseByTimeInAllWeeks(iw,ic);
+                                buttonCollection[buttonPoint] = new ClassButton(getActivity());
+                                buttonCollection[buttonPoint].setCourse(cc);
+                                int classDuration = cc.clock % 10;
+                                int classStartAt = (cc.clock - classDuration)/10;
+                                GridLayout.LayoutParams param = new GridLayout.LayoutParams();
+                                param.columnSpec = GridLayout.spec(cc.weekday,1);
+                                param.rowSpec = GridLayout.spec(classStartAt-1,classDuration);
+                                param.width = 0;
+                                param.setGravity(Gravity.FILL);
+                                buttonCollection[buttonPoint].setLayoutParams(param);
+                                buttonCollection[buttonPoint].setBackgroundResource(R.drawable.class_button);
+                                sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
+                                boolean solid_grid = sharedPref.getBoolean("pref_solid_grid", false);
+                                if(solid_grid) {
+                                    buttonCollection[buttonPoint].setMaxLines(classDuration * 3);
+                                    buttonCollection[buttonPoint].setEllipsize(TextUtils.TruncateAt.END);
+                                }
+                                buttonCollection[buttonPoint].setBackgroundColor(0xffdddddd);
+                                buttonCollection[buttonPoint].setTextColor(0xff999999);
+                                gridLayout.addView(buttonCollection[buttonPoint]);
+                                buttonPoint++;
+                                ic += classDuration - 1;
+                            }
+                        }
                     }
                 }
             }

@@ -63,6 +63,37 @@ public class CourseManager {
         cursor.close();
         return null;
     }
+    CourseClass getCourseByTimeInAllWeeks(int weekday, int startclock){
+        CourseClass cc = new CourseClass();
+        String selection = "weekday = ?";
+        String[] selectionArgs = {String.valueOf(weekday)};
+        String sortOrder = "week DESC";
+        Cursor cursor = db.query(
+                "course",
+                null,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                sortOrder
+        );
+        while(cursor.moveToNext()) {
+            int clock = cursor.getInt(cursor.getColumnIndexOrThrow("clock"));
+            if(clock/10 == startclock){
+                cc.name = cursor.getString(cursor.getColumnIndexOrThrow("name"));
+                cc.teacher = cursor.getString(cursor.getColumnIndexOrThrow("teacher"));
+                cc.place = cursor.getString(cursor.getColumnIndexOrThrow("place"));
+                cc.week = cursor.getInt(cursor.getColumnIndexOrThrow("week"));
+                cc.weekday = cursor.getInt(cursor.getColumnIndexOrThrow("weekday"));
+                cc.clock = cursor.getInt(cursor.getColumnIndexOrThrow("clock"));
+                cc.intype = cursor.getInt(cursor.getColumnIndexOrThrow("intype"));
+                cursor.close();
+                return cc;
+            }
+        }
+        cursor.close();
+        return null;
+    }
     long addCourse(CourseClass cc){
         ContentValues values = cc.getContentValues();
         long newRowId = db.insert("course", null, values);

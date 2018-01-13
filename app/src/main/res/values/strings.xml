@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">课程表</string>
-    <string name="pref_app_version">Ver 0.190</string>
+    <string name="pref_app_version">Ver 0.201</string>
     <string name="title_tools">工具与插件</string>
     <string name="title_timetable">课程表</string>
     <string name="title_settings">设置</string>
@@ -49,7 +49,7 @@
     <string name="input_account">账号设置</string>
     <string name="user_name">用户名/学号</string>
     <string name="password">密码</string>
-    <string name="input_captcha">输入下图验证码</string>
+    <string name="input_captcha">输入右图验证码</string>
     <string name="loading_captcha">正在加载验证码...</string>
     <string name="load_captcha_failed_click_to_reload">验证码加载失败，点击图片重新加载</string>
     <string name="click_image_to_reload_captcha">点击图片来更换验证码</string>
@@ -113,4 +113,7 @@
     <string name="at_least_one_week_selected">至少有一周要上课</string>
     <string name="class_too_long">上课时间太长</string>
     <string name="add_class_manual_success">添加课程成功！</string>
+    <string name="pref_show_class_in_other_weeks">显示非本周课程</string>
+    <string name="pref_show_class_in_other_weeks_summary">非本周的课程将以灰色显示在课表中</string>
+    <string name="confirm_delete_all_classes">确认删除所有课程吗？该操作不可撤销</string>
 </resources>

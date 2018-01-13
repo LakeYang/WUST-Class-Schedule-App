@@ -8,6 +8,11 @@
                 android:key="pref_hide_weekends"
                 android:title="@string/pref_hide_weekends"
                 android:summary="@string/pref_hide_weekends_summary"/>
+            <SwitchPreference
+                android:defaultValue="true"
+                android:key="pref_show_class_in_other_weeks"
+                android:title="@string/pref_show_class_in_other_weeks"
+                android:summary="@string/pref_show_class_in_other_weeks_summary"/>
         </PreferenceCategory>
     <PreferenceCategory
         android:title="@string/pref_appearence"

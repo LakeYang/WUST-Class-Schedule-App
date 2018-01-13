@@ -1,6 +1,8 @@
 package com.hihuyang.kb.timetable;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,6 +14,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
+import java.util.Calendar;
 
 
 /**
@@ -65,10 +69,26 @@ public class ToolsFragment extends Fragment {
         deleteAllBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                CourseManager cm = new CourseManager(getActivity());
-                cm.truncateDatabase();
-                Snackbar.make(mCoord,getResources().getString(R.string.all_classes_deleted),Snackbar.LENGTH_SHORT).show();
-
+                final AlertDialog.Builder normalDialog = new AlertDialog.Builder(getActivity());
+                normalDialog.setTitle(getResources().getString(R.string.delete_all_classes));
+                normalDialog.setMessage(getResources().getString(R.string.confirm_delete_all_classes));
+                normalDialog.setPositiveButton(getResources().getString(R.string.ok),
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                CourseManager cm = new CourseManager(getActivity());
+                                cm.truncateDatabase();
+                                Snackbar.make(mCoord,getResources().getString(R.string.all_classes_deleted),Snackbar.LENGTH_SHORT).show();
+                            }
+                        });
+                normalDialog.setNegativeButton(getResources().getString(R.string.cancel),
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                //Nothing to do
+                            }
+                        });
+                normalDialog.show();
             }
         });
         accountSetting.setOnClickListener(new View.OnClickListener() {
