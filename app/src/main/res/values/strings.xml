@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">课程表</string>
-    <string name="pref_app_version">Ver 0.201</string>
+    <string name="pref_app_version">Ver 0.202</string>
     <string name="title_tools">工具与插件</string>
     <string name="title_timetable">课程表</string>
     <string name="title_settings">设置</string>
@@ -116,4 +116,6 @@
     <string name="pref_show_class_in_other_weeks">显示非本周课程</string>
     <string name="pref_show_class_in_other_weeks_summary">非本周的课程将以灰色显示在课表中</string>
     <string name="confirm_delete_all_classes">确认删除所有课程吗？该操作不可撤销</string>
+    <string name="save_changes">保存修改</string>
+    <string name="save_as_new_class">另存为新课程</string>
 </resources>

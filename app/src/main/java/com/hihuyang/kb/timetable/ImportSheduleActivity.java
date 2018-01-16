@@ -364,7 +364,12 @@ public class ImportSheduleActivity extends AppCompatActivity {
                                                                         resultCourse[i].week = allweekid;
                                                                         temps = weektemp[1];
                                                                         //Get Place
-                                                                        resultCourse[i].place = temps;
+                                                                        String[] placetemp = temps.split("节]");
+                                                                        if(placetemp.length>1){
+                                                                            resultCourse[i].place = placetemp[1];
+                                                                        }else{
+                                                                            resultCourse[i].place = temps;
+                                                                        }
                                                                         //Finally
                                                                         resultCourse[i].intype = 1;
 
