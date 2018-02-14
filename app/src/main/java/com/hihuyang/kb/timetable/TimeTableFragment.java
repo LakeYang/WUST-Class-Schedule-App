@@ -179,7 +179,7 @@ public class TimeTableFragment extends Fragment {
                 float x = lastTouchDownXY[0];
                 float y = lastTouchDownXY[1];
                 float w = gridLayout.getWidth()/15;
-                float h = gridLayout.getHeight()/11;
+                float h = gridLayout.getHeight()/12;
                 int weekid = (int)((x-w)/2/w+1);
                 int clockid = (int)(y/h+1);
                 if(weekid == 0){
@@ -334,12 +334,12 @@ public class TimeTableFragment extends Fragment {
         }
         //Loading Interface
         int classNum = courseManager.getNumOfAllClasses();
-        gridLayout.removeViews(19, gridLayout.getChildCount()-19);
+        gridLayout.removeViews(20, gridLayout.getChildCount()-20);
         if (classNum != 0) {
             ClassButton[] buttonCollection = new ClassButton[classNum];
             int buttonPoint = 0;
             for(int iw=1;iw<=7;iw++){
-                for(int ic=1;ic<=11;ic++){
+                for(int ic=1;ic<=12;ic++){
                     if(courseManager.getCourseByTime(currentWeek,iw,ic) != null){
                         CourseClass cc = courseManager.getCourseByTime(currentWeek,iw,ic);
                         buttonCollection[buttonPoint] = new ClassButton(getActivity());

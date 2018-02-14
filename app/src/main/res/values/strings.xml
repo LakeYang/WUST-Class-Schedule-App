@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">课程表</string>
-    <string name="pref_app_version">Ver 0.202</string>
+    <string name="pref_app_version">Ver 0.210</string>
     <string name="title_tools">工具与插件</string>
     <string name="title_timetable">课程表</string>
     <string name="title_settings">设置</string>
@@ -108,7 +108,7 @@
     <string name="unset">未设置</string>
     <string name="startclock_greater_than_end">开始节数大于结束节数</string>
     <string name="startclock_cannot_zero">节数不能为0，从1开始</string>
-    <string name="endclock_exceed">结束节数不能大于11</string>
+    <string name="endclock_exceed">结束节数不能大于12</string>
     <string name="please_input_clock">请输入节数</string>
     <string name="at_least_one_week_selected">至少有一周要上课</string>
     <string name="class_too_long">上课时间太长</string>
@@ -118,4 +118,5 @@
     <string name="confirm_delete_all_classes">确认删除所有课程吗？该操作不可撤销</string>
     <string name="save_changes">保存修改</string>
     <string name="save_as_new_class">另存为新课程</string>
+    <string name="school_system_not_operational_with_code">教务处炸了，HTTP错误码%1$d</string>
 </resources>

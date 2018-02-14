@@ -71,7 +71,7 @@ public class AddCustomClassActivity extends AppCompatActivity {
                     Snackbar.make(courseName, getResources().getString(R.string.startclock_cannot_zero),Snackbar.LENGTH_SHORT).show();
                     return;
                 }
-                if(end>11){
+                if(end>12){
                     Snackbar.make(courseName, getResources().getString(R.string.endclock_exceed),Snackbar.LENGTH_SHORT).show();
                     return;
                 }

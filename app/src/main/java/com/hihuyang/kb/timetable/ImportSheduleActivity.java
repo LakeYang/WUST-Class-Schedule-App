@@ -444,6 +444,17 @@ public class ImportSheduleActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(Call call, final Response response) throws IOException {
+                if(response.code()!=200){
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            hinttext.setText(String.format(getResources().getString(R.string.school_system_not_operational_with_code),response.code()));
+                            ImageView captcha = findViewById(R.id.captchaImage);
+                            captcha.setImageDrawable(getResources().getDrawable(R.drawable.ic_sync));
+                        }
+                    });
+                    return;
+                }
                 InputStream inputStream = response.body().byteStream();
                 final Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
                 runOnUiThread(new Runnable() {
