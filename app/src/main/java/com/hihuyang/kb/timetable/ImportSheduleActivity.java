@@ -286,57 +286,6 @@ public class ImportSheduleActivity extends AppCompatActivity {
                                                                         temp = temps.split("  ");
                                                                         resultCourse[i].teacher = temp[0];
                                                                         temps = temp[1];
-                                                                        //Get week
-                                                                        /*String[] weektemp = temps.split("-");
-                                                                        Log.d("Debug",temps);
-                                                                        if(weektemp.length == 1){
-                                                                            String[] weeks = temps.split("周");
-                                                                            int startWeek = Integer.valueOf(weeks[0]);
-                                                                            int weekid = (int)Math.pow(2,25-startWeek);
-                                                                            resultCourse[i].week = weekid;
-                                                                        }else if (weektemp.length == 2) {
-                                                                            temp = temps.split("-");
-                                                                            int startWeek = Integer.valueOf(temp[0]);
-                                                                            temps = temp[1];
-                                                                            temp = temps.split("周");
-                                                                            int endWeek = Integer.valueOf(temp[0]);
-                                                                            temps = temp[1];
-                                                                            int weekid = 0;
-                                                                            if(startWeek<=endWeek){
-                                                                                for(int j=startWeek;j<=25;j++){
-                                                                                    weekid *= 2;
-                                                                                    if(j<=endWeek){
-                                                                                        weekid += 1;
-                                                                                    }
-                                                                                }
-                                                                            }
-                                                                            resultCourse[i].week = weekid;
-                                                                        }else{
-                                                                            //MultipleTime
-                                                                            String[] weeks = temps.split("周");
-                                                                            String allweeks = weeks[0];
-                                                                            String[] everyWeekTime = allweeks.split(",");
-                                                                            int allweekid = 0;
-                                                                            int weekid = 0;
-                                                                            for(String procWeek : everyWeekTime){
-                                                                                String[] weeksplit = procWeek.split("-");
-                                                                                int startWeek = Integer.valueOf(weeksplit[0]);
-                                                                                int endWeek = Integer.valueOf(weeksplit[1]);
-                                                                                if(startWeek<=endWeek){
-                                                                                    for(int j=startWeek;j<=25;j++){
-                                                                                        weekid *= 2;
-                                                                                        if(j<=endWeek){
-                                                                                            weekid += 1;
-                                                                                        }
-                                                                                    }
-                                                                                }
-                                                                                allweekid += weekid;
-                                                                                weekid = 0;
-                                                                            }
-                                                                            resultCourse[i].week = allweekid;
-                                                                            temp = temps.split("周");
-                                                                            temps = temp[1];
-                                                                        }*/
                                                                         //Get Week New Version
                                                                         String[] weektemp = temps.split("周");
                                                                         String allweeks = weektemp[0];

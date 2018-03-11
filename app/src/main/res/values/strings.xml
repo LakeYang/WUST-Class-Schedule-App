@@ -119,4 +119,6 @@
     <string name="save_changes">保存修改</string>
     <string name="save_as_new_class">另存为新课程</string>
     <string name="school_system_not_operational_with_code">教务处炸了，HTTP错误码%1$d</string>
+    <string name="edit_class">编辑课程</string>
+    <string name="delete_this_class">删除该课程</string>
 </resources>

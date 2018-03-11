@@ -17,10 +17,8 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/backToNowButton"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
         android:layout_marginBottom="10dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
         android:clickable="true"
         android:focusable="true"
         android:src="@drawable/ic_lock"
@@ -32,10 +30,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
         android:layout_marginBottom="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
         android:clickable="true"
         android:focusable="true"
         android:src="@drawable/ic_undo_variant"
@@ -56,7 +52,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:drawableLeft="@drawable/ic_arrow_left_bold"
                 android:drawableStart="@drawable/ic_arrow_left_bold"
                 android:text="@string/prev_week" />
 
@@ -83,7 +78,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:drawableEnd="@drawable/ic_arrow_right_bold"
-                android:drawableRight="@drawable/ic_arrow_right_bold"
                 android:text="@string/next_week" />
 
 
@@ -103,7 +97,7 @@
                 android:layout_gravity="fill"
                 android:background="@color/colorClassTime"
                 android:gravity="center"
-                android:text="1\n月" />
+                android:text="N\n月" />
 
             <TextView
                 android:id="@+id/monday_textview"
