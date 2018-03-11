@@ -12,4 +12,3 @@ public class AboutAppActivity extends AppCompatActivity {
     }
 }
 
-//test 22点15分
