@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">课程表</string>
-    <string name="pref_app_version">Ver 0.210</string>
+    <string name="pref_app_version">Ver 0.211</string>
     <string name="title_tools">工具与插件</string>
     <string name="title_timetable">课程表</string>
     <string name="title_settings">设置</string>
@@ -122,6 +122,6 @@
     <string name="edit_class">编辑课程</string>
     <string name="delete_this_class">删除该课程</string>
     <string name="delete_this_classes">删除该课程</string>
-    <string name="confirm_delete_this_classes">确定删除该课程吗？所以同名课程都将被删除</string>
+    <string name="confirm_delete_this_classes">确定删除该课程吗？所以同名课程都将被删除(该功能暂不可用)</string>
     <string name="this_class_deleted">已删除课程 [%1$s]</string>
 </resources>
