@@ -2,6 +2,7 @@ package com.hihuyang.kb.timetable;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.TextView;
 
@@ -37,8 +39,10 @@ public class ClassInfoActivity extends AppCompatActivity {
         TextView class_weeks = findViewById(R.id.class_weeks);
         TextView class_place = findViewById(R.id.class_place);
         changeColorBtn = findViewById(R.id.color_setting);
+        Button classDelBtn = findViewById(R.id.delete_class_button);
         CollapsingToolbarLayout toolbarLayout = findViewById(R.id.toolbar_layout);
 
+        final Context ctx = this;
         Intent intent = getIntent();
         String json = intent.getStringExtra("CLASS_OBJECT");
         Gson gson = new Gson();
@@ -59,6 +63,30 @@ public class ClassInfoActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 showSelectColorDialog();
+            }
+        });
+        classDelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Open delete confirm
+                final AlertDialog.Builder normalDialog = new AlertDialog.Builder(ctx);
+                normalDialog.setTitle(getResources().getString(R.string.delete_this_classes));
+                normalDialog.setMessage(getResources().getString(R.string.confirm_delete_this_classes));
+                normalDialog.setPositiveButton(getResources().getString(R.string.ok),
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Snackbar.make(findViewById(R.id.toolbar),String.format(getResources().getString(R.string.this_class_deleted),course.name),Snackbar.LENGTH_SHORT).show();
+                            }
+                        });
+                normalDialog.setNegativeButton(getResources().getString(R.string.cancel),
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                //Nothing to do
+                            }
+                        });
+                normalDialog.show();
             }
         });
     }

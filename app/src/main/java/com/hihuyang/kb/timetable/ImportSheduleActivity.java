@@ -22,6 +22,7 @@ import android.widget.ToggleButton;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Calendar;
+import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -40,6 +41,7 @@ public class ImportSheduleActivity extends AppCompatActivity {
     private String offDate;
     final Context ctx = this;
     CourseManager cm;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,43 +54,44 @@ public class ImportSheduleActivity extends AppCompatActivity {
         captcha.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-            if(hinttext.getText() != getResources().getString(R.string.loading_captcha)){
-                loadCaptcha();
-                captcha.setImageDrawable(getResources().getDrawable(R.drawable.ic_sync));
-                hinttext.setText(getResources().getString(R.string.loading_captcha));
-            }
+                if (hinttext.getText() != getResources().getString(R.string.loading_captcha)) {
+                    loadCaptcha();
+                    captcha.setImageDrawable(getResources().getDrawable(R.drawable.ic_sync));
+                    hinttext.setText(getResources().getString(R.string.loading_captcha));
+                }
             }
         });
         Calendar nowCal = Calendar.getInstance();
         ToggleButton tgBtn = findViewById(R.id.toggleButton);
         int month = nowCal.get(Calendar.MONTH);
         int year = nowCal.get(Calendar.YEAR);
-        if(month>=8){
-            tgBtn.setTextOn(getResources().getString(R.string.first_sem) + " (" + String.valueOf(year)+"-"+String.valueOf(year+1)+"-1)");
-            onDate = String.valueOf(year)+"-"+String.valueOf(year+1)+"-1";
-            tgBtn.setTextOff(getResources().getString(R.string.second_sem) + " (" + String.valueOf(year)+"-"+String.valueOf(year+1)+"-2)");
-            offDate = String.valueOf(year)+"-"+String.valueOf(year+1)+"-2";
-        }else if(month<=2){
-            tgBtn.setTextOn(getResources().getString(R.string.first_sem) + " (" + String.valueOf(year-1)+"-"+String.valueOf(year)+"-1)");
-            onDate = String.valueOf(year-1)+"-"+String.valueOf(year)+"-1";
-            tgBtn.setTextOff(getResources().getString(R.string.second_sem) + " (" + String.valueOf(year-1)+"-"+String.valueOf(year)+"-2)");
-            offDate = String.valueOf(year-1)+"-"+String.valueOf(year)+"-2";
-        }else{
-            tgBtn.setTextOn(getResources().getString(R.string.second_sem) + " (" + String.valueOf(year-1)+"-"+String.valueOf(year)+"-2)");
-            onDate = String.valueOf(year-1)+"-"+String.valueOf(year)+"-2";
-            tgBtn.setTextOff(getResources().getString(R.string.first_sem) + " (" + String.valueOf(year)+"-"+String.valueOf(year+1)+"-1)");
-            offDate = String.valueOf(year)+"-"+String.valueOf(year+1)+"-1";
+        if (month >= 8) {
+            tgBtn.setTextOn(getResources().getString(R.string.first_sem) + " (" + String.valueOf(year) + "-" + String.valueOf(year + 1) + "-1)");
+            onDate = String.valueOf(year) + "-" + String.valueOf(year + 1) + "-1";
+            tgBtn.setTextOff(getResources().getString(R.string.second_sem) + " (" + String.valueOf(year) + "-" + String.valueOf(year + 1) + "-2)");
+            offDate = String.valueOf(year) + "-" + String.valueOf(year + 1) + "-2";
+        } else if (month <= 2) {
+            tgBtn.setTextOn(getResources().getString(R.string.first_sem) + " (" + String.valueOf(year - 1) + "-" + String.valueOf(year) + "-1)");
+            onDate = String.valueOf(year - 1) + "-" + String.valueOf(year) + "-1";
+            tgBtn.setTextOff(getResources().getString(R.string.second_sem) + " (" + String.valueOf(year - 1) + "-" + String.valueOf(year) + "-2)");
+            offDate = String.valueOf(year - 1) + "-" + String.valueOf(year) + "-2";
+        } else {
+            tgBtn.setTextOn(getResources().getString(R.string.second_sem) + " (" + String.valueOf(year - 1) + "-" + String.valueOf(year) + "-2)");
+            onDate = String.valueOf(year - 1) + "-" + String.valueOf(year) + "-2";
+            tgBtn.setTextOff(getResources().getString(R.string.first_sem) + " (" + String.valueOf(year) + "-" + String.valueOf(year + 1) + "-1)");
+            offDate = String.valueOf(year) + "-" + String.valueOf(year + 1) + "-1";
         }
         tgBtn.setText(onDate);
-        SharedPreferences sharedPref = getSharedPreferences("USER_STORE",Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = getSharedPreferences("USER_STORE", Context.MODE_PRIVATE);
         EditText usernameText = findViewById(R.id.username_text);
         EditText passwordText = findViewById(R.id.password_text);
         usernameText.setText(sharedPref.getString("account_username", ""));
         passwordText.setText(sharedPref.getString("account_password", ""));
         loadCaptcha();
     }
+
     public void import_Clicked(View view) {
-        if(lastJSESSIONID == null){
+        if (lastJSESSIONID == null) {
             return;
         }
         Button import_now = findViewById(R.id.start_import);
@@ -124,7 +127,7 @@ public class ImportSheduleActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         waitingDialog.dismiss();
-                        Snackbar.make(hinttext,getResources().getString(R.string.network_connection_failed),Snackbar.LENGTH_SHORT).show();
+                        Snackbar.make(hinttext, getResources().getString(R.string.network_connection_failed), Snackbar.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -135,15 +138,15 @@ public class ImportSheduleActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        if(res.length()>200){
+                        if (res.length() > 200) {
                             waitingDialog.dismiss();
-                            if(res.contains("验证码错误")){
-                                Snackbar.make(hinttext,getResources().getString(R.string.invalid_captcha),Snackbar.LENGTH_SHORT).show();
-                            }else if(res.contains("该帐号不存在或密码错误")){
-                                Snackbar.make(hinttext,getResources().getString(R.string.invalid_account),Snackbar.LENGTH_SHORT).show();
+                            if (res.contains("验证码错误")) {
+                                Snackbar.make(hinttext, getResources().getString(R.string.invalid_captcha), Snackbar.LENGTH_SHORT).show();
+                            } else if (res.contains("该帐号不存在或密码错误")) {
+                                Snackbar.make(hinttext, getResources().getString(R.string.invalid_account), Snackbar.LENGTH_SHORT).show();
                             }
                             loadCaptcha();
-                        }else{
+                        } else {
                             waitingDialog.setMessage(getResources().getString(R.string.downloading_shedule));
                             //Success logon
                             waitingDialog.setMessage(getResources().getString(R.string.client_start_progress));
@@ -159,7 +162,7 @@ public class ImportSheduleActivity extends AppCompatActivity {
                                         @Override
                                         public void run() {
                                             waitingDialog.dismiss();
-                                            Snackbar.make(hinttext,getResources().getString(R.string.network_connection_failed),Snackbar.LENGTH_SHORT).show();
+                                            Snackbar.make(hinttext, getResources().getString(R.string.network_connection_failed), Snackbar.LENGTH_SHORT).show();
                                         }
                                     });
                                 }
@@ -182,6 +185,7 @@ public class ImportSheduleActivity extends AppCompatActivity {
                                                 }
                                             });
                                         }
+
                                         @Override
                                         public void onResponse(Call call, final Response responseFinal) throws IOException {
                                             final String r2 = responseFinal.body().string();
@@ -193,13 +197,13 @@ public class ImportSheduleActivity extends AppCompatActivity {
                                                     String inputUsername = usernameText.getText().toString();
                                                     ToggleButton tgBtn = findViewById(R.id.toggleButton);
                                                     String date;
-                                                    if(tgBtn.isChecked()){
+                                                    if (tgBtn.isChecked()) {
                                                         date = onDate;
-                                                    }else{
+                                                    } else {
                                                         date = offDate;
                                                     }
                                                     Request request = new Request.Builder()
-                                                            .url("http://jwxt.wust.edu.cn/whkjdx/tkglAction.do?method=printExcelByFz&sql=&type=xsdy&xnxqh="+date+"&xsid="+inputUsername)
+                                                            .url("http://jwxt.wust.edu.cn/whkjdx/tkglAction.do?method=printExcelByFz&sql=&type=xsdy&xnxqh=" + date + "&xsid=" + inputUsername)
                                                             .addHeader("Cookie", lastJSESSIONID)
                                                             .build();
                                                     Call call3 = client.newCall(request);
@@ -214,17 +218,18 @@ public class ImportSheduleActivity extends AppCompatActivity {
                                                                 }
                                                             });
                                                         }
+
                                                         @Override
                                                         public void onResponse(Call call, final Response responseFinal) throws IOException {
                                                             final String r3 = responseFinal.body().string();
-                                                            Log.d("RES",r3);
+                                                            Log.d("RES", r3);
                                                             runOnUiThread(new Runnable() {
                                                                 @Override
                                                                 public void run() {
                                                                     String[] lines = r3.split("\n");
                                                                     int items = 0;
                                                                     for (String item : lines) {
-                                                                        if(item.startsWith("objdocSheets.Sheets(\"Sheet1\").Cells") && item.length()>=60 && !item.startsWith("objdocSheets.Sheets(\"Sheet1\").Cells(2,2).Value")){
+                                                                        if (item.startsWith("objdocSheets.Sheets(\"Sheet1\").Cells") && item.length() >= 60 && !item.startsWith("objdocSheets.Sheets(\"Sheet1\").Cells(2,2).Value")) {
                                                                             items++;
                                                                             String[] temp = item.split("  ");
                                                                             items = items + temp.length - 1;
@@ -233,47 +238,47 @@ public class ImportSheduleActivity extends AppCompatActivity {
                                                                     String[] results = new String[items];
                                                                     items = 0;
                                                                     for (String item : lines) {
-                                                                        if(item.startsWith("objdocSheets.Sheets(\"Sheet1\").Cells") && item.length()>=60 && !item.startsWith("objdocSheets.Sheets(\"Sheet1\").Cells(2,2).Value")){
-                                                                            String substr = item.substring(item.indexOf("Cells(")+6);
+                                                                        if (item.startsWith("objdocSheets.Sheets(\"Sheet1\").Cells") && item.length() >= 60 && !item.startsWith("objdocSheets.Sheets(\"Sheet1\").Cells(2,2).Value")) {
+                                                                            String substr = item.substring(item.indexOf("Cells(") + 6);
                                                                             String[] temp = substr.split("  ");
                                                                             String[] titleTemps = substr.split("\"");
                                                                             String title = titleTemps[0] + "\"";
                                                                             String content = titleTemps[1];
                                                                             String[] ntemp = content.split("n");
-                                                                            for(int t=3;t<=temp.length;t++){
-                                                                                String newString = ntemp[(t-3)*2] + "n" + ntemp[1+(t-3)*2];
+                                                                            for (int t = 3; t <= temp.length; t++) {
+                                                                                String newString = ntemp[(t - 3) * 2] + "n" + ntemp[1 + (t - 3) * 2];
                                                                                 newString = title + newString.substring(0, newString.length() - 1) + "\";";
                                                                                 results[items] = newString;
-                                                                                Log.d("EX",newString);
+                                                                                Log.d("EX", newString);
                                                                                 items++;
                                                                             }
-                                                                            String lastString = title + ntemp[ntemp.length-2] + "n" + ntemp[ntemp.length-1] + "\";";
+                                                                            String lastString = title + ntemp[ntemp.length - 2] + "n" + ntemp[ntemp.length - 1] + "\";";
                                                                             results[items] = lastString;
-                                                                            Log.d("EX",lastString);
+                                                                            Log.d("EX", lastString);
                                                                             items++;
                                                                         }
                                                                     }
                                                                     CourseClass[] resultCourse = new CourseClass[items];
-                                                                    for(int i=0;i<items;i++){
+                                                                    for (int i = 0; i < items; i++) {
                                                                         //Get Clock
                                                                         resultCourse[i] = new CourseClass();
                                                                         String[] temp = results[i].split(",");
-                                                                        resultCourse[i].clock = ((Integer.valueOf(temp[0])-14)*2+1)*10+2;
+                                                                        resultCourse[i].clock = ((Integer.valueOf(temp[0]) - 14) * 2 + 1) * 10 + 2;
                                                                         String temps = "";
-                                                                        if(temp.length>2){
-                                                                            for(int m=1;m<temp.length;m++){
+                                                                        if (temp.length > 2) {
+                                                                            for (int m = 1; m < temp.length; m++) {
                                                                                 temps = temps + temp[m];
-                                                                                if(m!=temp.length-1){
+                                                                                if (m != temp.length - 1) {
                                                                                     temps = temps + ",";
                                                                                 }
                                                                             }
-                                                                        }else{
+                                                                        } else {
                                                                             temps = temp[1];
                                                                         }
                                                                         //Get Weekdays
                                                                         temp = temps.split("\\)");
                                                                         String temps1 = temp[0];
-                                                                        resultCourse[i].weekday = Integer.valueOf(temps1)-1;
+                                                                        resultCourse[i].weekday = Integer.valueOf(temps1) - 1;
                                                                         //Get ClassName
                                                                         temp = temps.split("\"");
                                                                         temps = temp[1];
@@ -291,18 +296,18 @@ public class ImportSheduleActivity extends AppCompatActivity {
                                                                         String allweeks = weektemp[0];
                                                                         String[] eachweek = allweeks.split(",");
                                                                         int allweekid = 0;
-                                                                        for(String thisweek:eachweek){
+                                                                        for (String thisweek : eachweek) {
                                                                             String[] splitline = thisweek.split("-");
-                                                                            if(splitline.length==1){
-                                                                                allweekid += Math.pow(2,25-Integer.valueOf(splitline[0]));
-                                                                            }else{
+                                                                            if (splitline.length == 1) {
+                                                                                allweekid += Math.pow(2, 25 - Integer.valueOf(splitline[0]));
+                                                                            } else {
                                                                                 int startWeek = Integer.valueOf(splitline[0]);
                                                                                 int endWeek = Integer.valueOf(splitline[1]);
                                                                                 int weekid = 0;
-                                                                                if(startWeek<=endWeek){
-                                                                                    for(int j=startWeek;j<=25;j++){
+                                                                                if (startWeek <= endWeek) {
+                                                                                    for (int j = startWeek; j <= 25; j++) {
                                                                                         weekid *= 2;
-                                                                                        if(j<=endWeek){
+                                                                                        if (j <= endWeek) {
                                                                                             weekid += 1;
                                                                                         }
                                                                                     }
@@ -314,9 +319,9 @@ public class ImportSheduleActivity extends AppCompatActivity {
                                                                         temps = weektemp[1];
                                                                         //Get Place
                                                                         String[] placetemp = temps.split("节]");
-                                                                        if(placetemp.length>1){
+                                                                        if (placetemp.length > 1) {
                                                                             resultCourse[i].place = placetemp[1];
-                                                                        }else{
+                                                                        } else {
                                                                             resultCourse[i].place = temps;
                                                                         }
                                                                         //Finally
@@ -326,7 +331,7 @@ public class ImportSheduleActivity extends AppCompatActivity {
                                                                     }
                                                                     AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
                                                                     int classNum = items;
-                                                                    if(classNum==0){
+                                                                    if (classNum == 0) {
                                                                         builder.setMessage(getResources().getString(R.string.no_class_imported))
                                                                                 .setCancelable(false)
                                                                                 .setPositiveButton(getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
@@ -334,8 +339,8 @@ public class ImportSheduleActivity extends AppCompatActivity {
                                                                                         waitingDialog.dismiss();
                                                                                     }
                                                                                 });
-                                                                    }else{
-                                                                        builder.setMessage(String.format(getResources().getString(R.string.class_imported),classNum))
+                                                                    } else {
+                                                                        builder.setMessage(String.format(getResources().getString(R.string.class_imported), classNum))
                                                                                 .setCancelable(false)
                                                                                 .setPositiveButton(getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
                                                                                     public void onClick(DialogInterface dialog, int id) {
@@ -363,7 +368,8 @@ public class ImportSheduleActivity extends AppCompatActivity {
             }
         });
     }
-    private void getScheduleNow(){
+
+    private void getScheduleNow() {
         ProgressDialog waitingDialog = new ProgressDialog(this);
         waitingDialog.setTitle(getResources().getString(R.string.importing));
         waitingDialog.setMessage(getResources().getString(R.string.logging_to_jwc));
@@ -371,7 +377,8 @@ public class ImportSheduleActivity extends AppCompatActivity {
         waitingDialog.setCancelable(false);
         waitingDialog.show();
     }
-    public void loadCaptcha(){
+
+    public void loadCaptcha() {
         Request request = new Request.Builder()
                 .get()
                 .url("http://jwxt.wust.edu.cn/whkjdx/verifycode.servlet")
@@ -393,11 +400,11 @@ public class ImportSheduleActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(Call call, final Response response) throws IOException {
-                if(response.code()!=200){
+                if (response.code() != 200) {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            hinttext.setText(String.format(getResources().getString(R.string.school_system_not_operational_with_code),response.code()));
+                            hinttext.setText(String.format(getResources().getString(R.string.school_system_not_operational_with_code), response.code()));
                             ImageView captcha = findViewById(R.id.captchaImage);
                             captcha.setImageDrawable(getResources().getDrawable(R.drawable.ic_sync));
                         }
@@ -412,8 +419,12 @@ public class ImportSheduleActivity extends AppCompatActivity {
                         ImageView captcha = findViewById(R.id.captchaImage);
                         captcha.setImageBitmap(bitmap);
                         hinttext.setText(getResources().getString(R.string.click_image_to_reload_captcha));
-                        String[] separated = response.header("Set-Cookie").split(";");
-                        lastJSESSIONID = separated[0];
+                        List<String> Cookies = response.headers().values("Set-Cookie");
+                        lastJSESSIONID = "";
+                        for (int i = 0; i < Cookies.size(); i++) {
+                            String[] separated = Cookies.get(i).split(";");
+                            lastJSESSIONID += separated[0] + ";";
+                        }
                     }
                 });
             }

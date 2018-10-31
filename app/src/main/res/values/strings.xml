@@ -121,4 +121,7 @@
     <string name="school_system_not_operational_with_code">教务处炸了，HTTP错误码%1$d</string>
     <string name="edit_class">编辑课程</string>
     <string name="delete_this_class">删除该课程</string>
+    <string name="delete_this_classes">删除该课程</string>
+    <string name="confirm_delete_this_classes">确定删除该课程吗？所以同名课程都将被删除</string>
+    <string name="this_class_deleted">已删除课程 [%1$s]</string>
 </resources>
