@@ -8,4 +8,8 @@
     <color name="colorWeekdayActive">#99CCFF</color>
     <color name="colorSelectActive">#99CCFF</color>
     <color name="colorSelectNormal">#CCCCCC</color>
+    <color name="colorGray">#fff000</color>
+    <color name="colorMaintitle">#fff000</color>
+    <color name="colorSubtitle">#fff000</color>
+
 </resources>
